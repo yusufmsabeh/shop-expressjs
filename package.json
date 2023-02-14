@@ -1,0 +1,29 @@
+{
+  "name": "shop-redo",
+  "version": "1.0.0",
+  "description": "build a web based server for shop",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOOUMS/shop-expressjs.git"
+  },
+  "author": "Yusuf Nafiz Abu Msabeh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YOOUMS/shop-expressjs/issues"
+  },
+  "homepage": "https://github.com/YOOUMS/shop-expressjs#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql3": "^0.6.0",
+    "sequelize": "^6.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
