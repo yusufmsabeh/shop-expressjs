@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head.ejs') %>
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+      <h1>Add Product</h1>
+      <form
+        action='<%=product==undefined?"/admin/add-product":"/admin/edit-product"%> '
+        method="POST"
+      >
+        <label for="title">Title: </label>
+        <input
+          required
+          type="text"
+          name="title"
+          value='<%= product==undefined?"":product.title %>'
+        />
+
+        <hr />
+        <label for="description">Description: </label>
+        <br />
+        <textarea name="description" cols="30" rows="10">
+<%= product==undefined?"":product.description %></textarea
+        >
+        <hr />
+        <label for="price">Price: </label>
+        <input
+          required
+          type="number"
+          name="price"
+          step="0.01"
+          value='<%= product==undefined?"":product.price %>'
+        />
+
+        <hr />
+
+        <button type="submit"><%= product==undefined? "Add":"Edit" %></button>
+        <input
+          type="hidden"
+          name="id"
+          value='<%= product==undefined?"":product.id %>'
+        />
+      </form>
+    </main>
+  </body>
+</html>
