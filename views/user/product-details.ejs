@@ -4,20 +4,12 @@
   <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-      <h1>List of all products</h1>
-
       <div class="products-container">
-        <% products.forEach((product)=>{ %>
         <div class="product-card">
           <span class="title"><%= product.title %></span>
           <div class="description"><%= product.description %></div>
           <div class="description"><%= product.price %></div>
-          <div class="actions">
-            <a href="/product-details/<%=product.id%>" class="btn"> Details </a>
-          </div>
         </div>
-
-        <%})%>
       </div>
     </main>
   </body>
