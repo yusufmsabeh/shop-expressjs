@@ -2,7 +2,7 @@ const sqlite = require("sqlite3");
 const { open } = require("sqlite");
 const path = require("path");
 let db;
-let openDatabase = async () => {
+exports.openDatabase = async () => {
   try {
     db = await open({
       filename: path.join(
@@ -27,5 +27,6 @@ let openDatabase = async () => {
   }
 };
 
-exports.openDatabase = openDatabase;
-exports.db = db;
+exports.getDb = () => {
+  return db;
+};

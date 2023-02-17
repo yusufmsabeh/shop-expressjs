@@ -6,7 +6,7 @@ CREATE TABLE products (
     id VARCHAR PRIMARY KEY NOT NULL,
     user_id VARCHAR NOT NULL,
     title VARCHAR NOT NULL,
-    DESCRIPTION TEXT NOT NULL,
+    description TEXT NOT NULL,
     price REAL NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
