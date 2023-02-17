@@ -33,3 +33,18 @@ exports.getProductById = async (productId) => {
     throw e;
   }
 };
+
+exports.updateProduct = async (product) => {
+  try {
+    await getDb().run(
+      "UPDATE products SET title=?,description=?,price=? WHERE id=?",
+      product.title,
+      product.description,
+      product.price,
+      product.id
+    );
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
