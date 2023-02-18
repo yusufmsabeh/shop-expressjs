@@ -2,7 +2,7 @@ const { response } = require("express");
 const productDao = require("../data/DAOs/product-dao");
 exports.getIndex = async (request, response, next) => {
   try {
-    response.send("<h1>Home page<h1>");
+    response.redirect("/products");
   } catch (e) {
     response.sendStatus(500);
   }
