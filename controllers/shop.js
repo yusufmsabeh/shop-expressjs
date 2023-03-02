@@ -64,3 +64,15 @@ exports.getCart = async (request, response, next) => {
     response.sendStatus(500);
   }
 };
+
+exports.removeCart = async (request, response, next) => {
+  try {
+    const userId = 1;
+    const productId = request.body.productId;
+
+    await cartItemsDao.removeProduct(userId, productId);
+    response.redirect("/cart");
+  } catch (e) {
+    response.sendStatus(500);
+  }
+};

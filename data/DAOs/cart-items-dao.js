@@ -30,6 +30,34 @@ exports.addProduct = async (userId, productId) => {
   }
 };
 
+exports.removeProduct = async (userId, productId) => {
+  try {
+    const db = getDb();
+    const cartId = await getCartId(userId);
+    const productInCart = await db.get(
+      "SELECT * FROM cart_items WHERE cart_id=? AND product_id=?",
+      cartId,
+      productId
+    );
+    if (productInCart.quantity <= 1) {
+      await db.run(
+        "DELETE FROM cart_items WHERE cart_id=? AND product_id=?",
+        cartId,
+        productId
+      );
+    } else {
+      await db.run(
+        "UPDATE cart_items SET quantity=? WHERE cart_id=? AND product_id=? ",
+        productInCart.quantity - 1,
+        cartId,
+        productId
+      );
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
 exports.getCartItems = async (userId) => {
   try {
     const db = getDb();

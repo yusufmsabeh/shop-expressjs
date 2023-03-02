@@ -15,6 +15,10 @@
           <div class="quantity">Quantity: <%= product.quantity %></div>
           <div class="actions">
             <a href="/product-details/<%=product.id%>" class="btn"> Details </a>
+            <form action="/remove-cart" method="post">
+              <button type="submit">Remove</button>
+              <input type="hidden" name="productId" value="<%= product.id %>" />
+            </form>
           </div>
         </div>
 
