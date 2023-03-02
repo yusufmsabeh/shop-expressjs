@@ -57,7 +57,7 @@ exports.getCart = async (request, response, next) => {
     response.render("user/cart", {
       pageTitle: "Cart",
       path: "/cart",
-      cart: { products: cartItems, totalPrice: totalPrice },
+      cart: { products: cartItems, totalPrice: totalPrice || 0 },
     });
   } catch (e) {
     console.error(e);
