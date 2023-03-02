@@ -9,9 +9,10 @@
       <div class="products-container">
         <% cart.products.forEach((product)=>{ %>
         <div class="product-card">
-          <span class="title"><%= product.title %></span>
-          <div class="description"><%= product.description %></div>
-          <div class="description"><%= product.price %></div>
+          <span class="title">Title: <%= product.title %></span>
+          <div class="description">Description: <%= product.description %></div>
+          <div class="price">Price: <%= product.price %></div>
+          <div class="quantity">Quantity: <%= product.quantity %></div>
           <div class="actions">
             <a href="/product-details/<%=product.id%>" class="btn"> Details </a>
           </div>
