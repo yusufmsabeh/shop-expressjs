@@ -20,3 +20,18 @@ exports.fillOrderItems = async (userId, orderId) => {
     throw e;
   }
 };
+
+exports.getOrderItems = async (orderId) => {
+  try {
+    const db = getDb();
+
+    let orderItems = await db.all(
+      "SELECT id,user_id,title,description,price,quantity FROM order_items join products on order_items.product_id=products.id where order_id=?",
+      orderId
+    );
+    console.log(orderItems);
+    return orderItems;
+  } catch (e) {
+    throw e;
+  }
+};

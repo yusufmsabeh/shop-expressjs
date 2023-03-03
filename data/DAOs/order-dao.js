@@ -34,3 +34,13 @@ exports.getOrders = async (userId) => {
     throw e;
   }
 };
+
+exports.getOrder = async (orderId) => {
+  try {
+    const db = await getDb();
+    const order = await db.get("SELECT * FROM orders WHERE id=?", orderId);
+    return order;
+  } catch (e) {
+    throw e;
+  }
+};

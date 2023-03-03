@@ -114,3 +114,19 @@ exports.getOrders = async (request, response, next) => {
     response.sendStatus(e);
   }
 };
+
+exports.getOrderDetails = async (request, response, next) => {
+  try {
+    const orderId = request.params.orderId;
+    const order = await orderDao.getOrder(orderId);
+    const orderItems = await orderItemsDao.getOrderItems(orderId);
+    response.render("user/order-details", {
+      pageTitle: order.title,
+      path: "/order-details",
+      order: { products: orderItems, totalPrice: order.total_price },
+    });
+  } catch (e) {
+    console.error(e);
+    response.sendStatus(500);
+  }
+};

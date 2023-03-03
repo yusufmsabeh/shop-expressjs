@@ -11,6 +11,9 @@
         <div class="product-card">
           <span class="title"> Title: <%= order.title %></span>
           <span>Total Price: <%= order.total_price %></span>
+          <div class="actions">
+            <a href="/order/<%=order.id%>" class="btn"> details </a>
+          </div>
         </div>
         <%})%>
       </div>
