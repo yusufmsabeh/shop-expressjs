@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head.ejs') %>
+  <body>
+    <%- include('../includes/navigation.ejs')%>
+    <main>
+      <form action="/checkout" method="POST">
+        <label for="title">Order title</label>
+        <input type="text" name="orderTitle" />
+        <button type="submit">Finish Order</button>
+      </form>
+    </main>
+  </body>
+</html>

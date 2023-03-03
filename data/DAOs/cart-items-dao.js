@@ -85,3 +85,27 @@ exports.getTotalPrice = async (userId) => {
     throw e;
   }
 };
+
+exports.getCartItemsWithoutProducts = async (userId) => {
+  try {
+    const db = getDb();
+    const cartId = await getCartId(userId);
+    const cartItems = await db.all(
+      "SELECT * FROM cart_items WHERE cart_id=? ",
+      cartId
+    );
+    return cartItems;
+  } catch (e) {
+    throw e;
+  }
+};
+
+exports.deleteCartItems = async (userId) => {
+  try {
+    const db = getDb();
+    const cartId = await getCartId(userId);
+    db.run("DELETE FROM cart_items WHERE cart_id=?", cartId);
+  } catch (e) {
+    throw e;
+  }
+};

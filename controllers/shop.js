@@ -1,6 +1,8 @@
 const { response } = require("express");
 const productDao = require("../data/DAOs/product-dao");
 const cartItemsDao = require("../data/DAOs/cart-items-dao");
+const orderDao = require("../data/DAOs/order-dao");
+const orderItemsDao = require("../data/DAOs/order-items-dao");
 exports.getIndex = async (request, response, next) => {
   try {
     response.redirect("/products");
@@ -74,5 +76,41 @@ exports.removeCart = async (request, response, next) => {
     response.redirect("/cart");
   } catch (e) {
     response.sendStatus(500);
+  }
+};
+
+exports.getCheckOut = async (request, response, next) => {
+  try {
+    response.render("user/checkout", {
+      pageTitle: "Checkout",
+      path: "/checkout",
+    });
+  } catch (e) {
+    response.sendStatus(500);
+  }
+};
+
+exports.postCheckOut = async (request, response, next) => {
+  try {
+    const userId = 1;
+    const orderTitle = request.body.orderTitle;
+    await orderDao.createOrder(userId, orderTitle);
+    response.redirect("/orders");
+  } catch (e) {
+    response.sendStatus(500);
+  }
+};
+
+exports.getOrders = async (request, response, next) => {
+  try {
+    const userId = 1;
+    const orders = await orderDao.getOrders(userId);
+    response.render("user/orders", {
+      pageTitle: "orders",
+      path: "/orders",
+      orders: orders,
+    });
+  } catch (e) {
+    response.sendStatus(e);
   }
 };
