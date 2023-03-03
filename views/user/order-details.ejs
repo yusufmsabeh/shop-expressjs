@@ -13,6 +13,9 @@
           <div class="description">Description: <%= product.description %></div>
           <div class="price">Price: <%= product.price %></div>
           <div class="quantity">Quantity: <%= product.quantity %></div>
+          <div class="actions">
+            <a href="/product-details/<%=product.id%>" class="btn">Details</a>
+          </div>
         </div>
 
         <%})%>
