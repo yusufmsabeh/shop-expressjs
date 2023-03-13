@@ -16,6 +16,7 @@ exports.getProducts = async (request, response, next) => {
       pageTitle: "Products",
       path: "/products",
       products: products || [],
+      user: request.user || undefined,
     });
   } catch (e) {
     console.error(e);

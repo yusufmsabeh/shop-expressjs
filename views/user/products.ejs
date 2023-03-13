@@ -4,7 +4,9 @@
   <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-      <h1>List of all products</h1>
+      <% if(isAuthenticated){ %>
+        <h1> Hi, <%=user.name%> </h1> <%} else{ %> <h1>Hi Login to get full experience </h1> <%}%>
+      <h2>List of all products</h1>
 
       <div class="products-container">
         <% products.forEach((product)=>{ %>
