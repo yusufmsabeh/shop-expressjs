@@ -16,6 +16,15 @@ exports.createUser = async (email, name, password) => {
   }
 };
 
+exports.getUserById = async (id) => {
+  try {
+    const user = await getDb().get("SELECT * FROM users WHERE id=?", id);
+    return user;
+  } catch (e) {
+    throw e;
+  }
+};
+
 exports.getUserByEmail = async (email) => {
   try {
     const user = await getDb().get("SELECT * FROM users WHERE  email=?", email);

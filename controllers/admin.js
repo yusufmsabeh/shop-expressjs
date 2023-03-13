@@ -19,7 +19,7 @@ exports.getAddProducts = async (request, response, next) => {
 exports.postAddProducts = async (request, response, next) => {
   try {
     const product = request.body;
-    product.userId = 1;
+    product.userId = request.user.id;
     await productDao.insertProduct(product);
     response.redirect("/admin/add-product");
   } catch (e) {
@@ -30,7 +30,7 @@ exports.postAddProducts = async (request, response, next) => {
 
 exports.getAdminProducts = async (request, response, next) => {
   try {
-    const userId = 1;
+    const userId = request.user.id;
     const products = await userDao.getUserProducts(userId);
     response.render("admin/products", {
       pageTitle: "Your Products",

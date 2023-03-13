@@ -1,10 +1,13 @@
 const express = require("express");
 
 const shopController = require("../controllers/shop");
+const privateEndpoints = require("../middlewares/private-endpoints-middleware");
+
 const router = express.Router();
 
 router.get("/", shopController.getIndex);
 router.get("/products", shopController.getProducts);
+router.use(privateEndpoints);
 router.post("/cart", shopController.postCart);
 router.get("/cart", shopController.getCart);
 router.post("/remove-cart", shopController.removeCart);

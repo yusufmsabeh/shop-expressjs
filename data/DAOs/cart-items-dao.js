@@ -66,7 +66,7 @@ exports.getCartItems = async (userId) => {
       "SELECT id,user_id,title,description,price,quantity FROM cart_items join products on cart_items.product_id=products.id where cart_id=?",
       cartId
     );
-    console.log(cartItems);
+
     return cartItems;
   } catch (e) {
     throw e;

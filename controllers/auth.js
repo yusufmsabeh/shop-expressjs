@@ -90,3 +90,13 @@ exports.postSignup = async (request, response, next) => {
     response.sendStatus(500);
   }
 };
+
+exports.getLogout = async (request, response, next) => {
+  try {
+    await request.session.destroy();
+    response.redirect("/login");
+  } catch (e) {
+    console.error(e);
+    response.sendStatus(500);
+  }
+};

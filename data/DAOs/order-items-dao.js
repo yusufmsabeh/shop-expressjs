@@ -1,18 +1,18 @@
 const { getDb } = require("../database");
 const crypto = require("crypto");
-const { getCartId } = require("./cart-dao");
-const { getCartItemsWithoutProducts } = require("./cart-items-dao");
+const { getCartItems } = require("./cart-items-dao");
 
 exports.fillOrderItems = async (userId, orderId) => {
   try {
     const db = getDb();
-    const cartItems = await getCartItemsWithoutProducts(userId);
-
+    const cartItems = await getCartItems(userId);
     for (let i = 0; i < cartItems.length; i++) {
       await db.run(
-        "INSERT INTO order_items (order_id,product_id,quantity) VALUES (?,?,?)",
+        "INSERT INTO order_items (order_id,title,description,price,quantity) VALUES (?,?,?,?,?)",
         orderId,
-        cartItems[i].product_id,
+        cartItems[i].title,
+        cartItems[i].description,
+        cartItems[i].price,
         cartItems[i].quantity
       );
     }
@@ -26,7 +26,7 @@ exports.getOrderItems = async (orderId) => {
     const db = getDb();
 
     let orderItems = await db.all(
-      "SELECT id,user_id,title,description,price,quantity FROM order_items join products on order_items.product_id=products.id where order_id=?",
+      "SELECT * FROM order_items where order_id=?",
       orderId
     );
     console.log(orderItems);

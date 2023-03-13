@@ -1,4 +1,3 @@
-const { response } = require("express");
 const productDao = require("../data/DAOs/product-dao");
 const cartItemsDao = require("../data/DAOs/cart-items-dao");
 const orderDao = require("../data/DAOs/order-dao");
@@ -42,7 +41,7 @@ exports.getProductDetails = async (request, response, next) => {
 exports.postCart = async (request, response, next) => {
   try {
     const productId = request.body.productId;
-    const userId = 1;
+    const userId = request.user.id;
     await cartItemsDao.addProduct(userId, productId);
     response.redirect("/cart");
   } catch (e) {
@@ -53,7 +52,7 @@ exports.postCart = async (request, response, next) => {
 
 exports.getCart = async (request, response, next) => {
   try {
-    const userId = 1;
+    const userId = request.user.id;
     const cartItems = await cartItemsDao.getCartItems(userId);
     const totalPrice = await cartItemsDao.getTotalPrice(userId);
     response.render("user/cart", {
@@ -69,7 +68,7 @@ exports.getCart = async (request, response, next) => {
 
 exports.removeCart = async (request, response, next) => {
   try {
-    const userId = 1;
+    const userId = request.user.id;
     const productId = request.body.productId;
 
     await cartItemsDao.removeProduct(userId, productId);
@@ -92,18 +91,19 @@ exports.getCheckOut = async (request, response, next) => {
 
 exports.postCheckOut = async (request, response, next) => {
   try {
-    const userId = 1;
+    const userId = request.user.id;
     const orderTitle = request.body.orderTitle;
     await orderDao.createOrder(userId, orderTitle);
     response.redirect("/orders");
   } catch (e) {
+    console.error(e);
     response.sendStatus(500);
   }
 };
 
 exports.getOrders = async (request, response, next) => {
   try {
-    const userId = 1;
+    const userId = request.user.id;
     const orders = await orderDao.getOrders(userId);
     response.render("user/orders", {
       pageTitle: "orders",
