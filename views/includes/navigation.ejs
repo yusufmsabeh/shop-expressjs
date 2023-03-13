@@ -1,34 +1,58 @@
 <header class="header">
   <nav>
-    <ul class="header-ul">
-      <li><a href="/" class="<%= path=== '/'? 'active':' ' %>">Shop</a></li>
-      <li>
-        <a href="/products" class="<%= path=== '/products'? 'active':' ' %>"
-          >Products</a
-        >
-      </li>
-      <li>
-        <a href="/cart" class="<%= path=== '/cart'? 'active':' ' %>">Cart</a>
-      </li>
-      <li>
-        <a href="/orders" class="<%= path=== '/orders'? 'active':' ' %>"
-          >Orders</a
-        >
-      </li>
-      <li>
-        <a
-          href="/admin/products"
-          class="<%= path=== '/admin/products'? 'active':' ' %>"
-          >Admin Products</a
-        >
-      </li>
-      <li>
-        <a
-          href="/admin/add-product"
-          class="<%= path=== '/admin/add-product'? 'active':' ' %>"
-          >Add Product</a
-        >
-      </li>
+    <ul>
+      <div class="other-links-container">
+        <li><a href="/" class="<%= path=== '/'? 'active':' ' %>">Shop</a></li>
+        <li>
+          <a href="/products" class="<%= path=== '/products'? 'active':' ' %>"
+            >Products</a
+          >
+        </li>
+
+        <%if(isAuthenticated){%>
+        <li>
+          <a href="/cart" class="<%= path=== '/cart'? 'active':' ' %>">Cart</a>
+        </li>
+        <li>
+          <a href="/orders" class="<%= path=== '/orders'? 'active':' ' %>"
+            >Orders</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="/admin/products"
+            class="<%= path=== '/admin/products'? 'active':' ' %>"
+            >Admin Products</a
+          >
+        </li>
+        <li>
+          <a
+            href="/admin/add-product"
+            class="<%= path=== '/admin/add-product'? 'active':' ' %>"
+            >Add Product</a
+          >
+        </li>
+
+        <%}%>
+      </div>
+      <% if(!isAuthenticated) { %>
+      <div class="login-container">
+        <li>
+          <a href="/login" class="<%= path=== '/login'? 'active':' ' %>"
+            >Login</a
+          >
+        </li>
+      </div>
+      <%} else { %>
+      <div class="login-container">
+        <li>
+          <a href="/logout" class="<%= path=== '/logout'? 'active':' ' %>"
+            >Logout</a
+          >
+        </li>
+      </div>
+      <%}%>
     </ul>
   </nav>
 </header>

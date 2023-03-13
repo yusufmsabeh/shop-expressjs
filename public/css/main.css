@@ -15,8 +15,13 @@ header {
 
 header ul {
   display: flex;
+  justify-content: space-between;
   list-style: none;
   gap: 0.5rem;
+}
+.other-links-container {
+  display: flex;
+  gap: 1rem;
 }
 
 a:hover,
@@ -83,4 +88,76 @@ button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.login-form,
+.email-inputs,
+.password-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.login-form {
+  gap: 1rem;
+  padding: 0 5rem;
+  margin-top: 10rem;
+  min-width: 50rem;
+
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 1px #0000ff33;
+}
+
+.login-form input {
+  height: 2rem;
+  padding: 0.5rem;
+  border: 0.12rem solid black;
+  border-radius: 0.5rem;
+}
+
+.login-form button {
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.login-form input:hover {
+  border: 0.12rem solid #aa4586;
+}
+.login-form button:hover {
+  border-radius: 1rem;
+}
+
+.alert-message {
+  text-align: center;
+  background-color: red;
+  opacity: 0.6;
+  padding: 1rem;
+  color: white;
+  border-radius: 1rem;
+}
+
+.update-message {
+  text-align: center;
+  background-color: blue;
+  opacity: 0.6;
+  padding: 1rem;
+  color: white;
+  border-radius: 1rem;
+}
+
+.main-container-login-page {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signup {
+  padding: 1rem;
+}
+
+.signup a {
+  color: #aa4586;
 }

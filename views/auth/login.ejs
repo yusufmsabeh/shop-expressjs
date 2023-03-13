@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head.ejs') %>
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="main-container-login-page">
+      <form action="/login" method="POST">
+        <div class="login-form">
+          <% if(errorMessage!=null){ %>
+          <div class="alert-message"><%= errorMessage%></div>
+          <%}%> <% if(updateMessage!=null){ %>
+          <div class="update-message"><%= updateMessage%></div>
+          <%}%>
+          <div class="email-inputs">
+            <label for="emial">Email</label>
+            <input type="text" name="email" id="emialInput" required />
+          </div>
+          <div class="password-inputs">
+            <label for="password"> Password </label>
+            <input
+              type="password"
+              name="password"
+              id="passwordInput"
+              required
+            />
+          </div>
+
+          <button type="submit">Login</button>
+        </div>
+      </form>
+
+      <div class="signup">
+        don't have account? <a href="/signup">signup now.</a>
+      </div>
+    </main>
+  </body>
+</html>
