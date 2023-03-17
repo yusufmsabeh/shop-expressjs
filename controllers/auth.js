@@ -24,6 +24,7 @@ exports.postLogin = async (request, response, next) => {
     const password = request.body.password;
     const user = await userDao.getUserByEmail(email);
     if (!user) {
+      // No Account with this email
       return response.render("auth/login", {
         pageTitle: "Login",
         path: "/login",
@@ -33,6 +34,7 @@ exports.postLogin = async (request, response, next) => {
     }
     const isMatch = bcrypt.compare(password, user.password);
     if (!isMatch) {
+      // Password is wrong
       return response.render("auth/login", {
         pageTitle: "Login",
         path: "/login",
@@ -70,6 +72,7 @@ exports.postSignup = async (request, response, next) => {
     const { email, userName, password } = request.body;
     const user = await userDao.getUserByEmail(email);
     if (user) {
+      // Account already exits with this email
       return response.render("auth/signup", {
         pageTitle: "Signup",
         path: "/signup",
@@ -79,7 +82,7 @@ exports.postSignup = async (request, response, next) => {
     }
     const hashedPassword = await bcrypt.hash(password, 12);
     await userDao.createUser(email, userName, hashedPassword);
-    response.render("/login", {
+    response.render("auth/login", {
       pageTitle: "Login",
       path: "/login",
       errorMessage: null,
