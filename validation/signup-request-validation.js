@@ -13,7 +13,7 @@ const signupRequestSchema = joi.object({
   }),
   password: joi.string().min(8).messages({
     "string.min": "Password must be more then 8 characters",
-    "string.password": "Password required",
+    "string.empty": "Password required",
   }),
 });
 
