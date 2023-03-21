@@ -64,15 +64,6 @@ exports.getSignup = async (request, response, next) => {
 exports.postSignup = async (request, response, next) => {
   try {
     const { email, userName, password } = request.body;
-    const user = await userDao.getUserByEmail(email);
-    if (user) {
-      // Account already exits with this email
-      return renderPages.renderSignupPage(response, {
-        errorMessages: [
-          { message: "Account exits with this email", path: ["email"] },
-        ],
-      });
-    }
     const hashedPassword = await bcrypt.hash(password, 12);
     await userDao.createUser(email, userName, hashedPassword);
     renderPages.renderLoginPage(response, {
