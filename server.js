@@ -1,6 +1,7 @@
 //External Imports
 const express = require("express");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 
 // My Imports
 const shopRouter = require("./routes/shop");
@@ -12,9 +13,9 @@ const { openDatabase } = require("./data/database");
 const sessionMiddleware = require("./middlewares/session-middleware");
 const setLocalsMiddleware = require("./middlewares/set-locals-middleware");
 const authorizationMiddleware = require("./middlewares/authorization-middleware");
+dotenv.config();
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(sessionMiddleware);
 app.use(authorizationMiddleware);
 openDatabase();
@@ -25,4 +26,4 @@ app.use(authRouter);
 app.use(shopRouter);
 app.use("/admin", adminRouter);
 
-app.listen(3000);
+app.listen(process.env.PORT);
