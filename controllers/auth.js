@@ -32,7 +32,7 @@ exports.postLogin = async (request, response, next) => {
         updateMessage: null,
       });
     }
-    const isMatch = bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       // Password is wrong
       return response.render("auth/login", {
