@@ -6,22 +6,35 @@
     <main class="main-container-login-page">
       <form action="/signup" method="POST">
         <div class="login-form">
-          <% if(errorMessage!=null){ %>
-          <div class="alert-message"><%= errorMessage%></div>
-          <%}%> <% if(updateMessage!=null){ %>
+          <% errorMessages.forEach((errorMessage)=>{%>
+          <div class="alert-message"><%= errorMessage.message%></div>
+          <%}) %> <% updateMessages.forEach((updateMessage)=>{%>
           <div class="update-message"><%= updateMessage%></div>
-          <%}%>
+          <%}) %>
           <div class="email-inputs">
             <label for="emial">Email</label>
-            <input type="text" name="email" id="emialInput" required />
+            <input
+              class="<%= errorMessages.find((element)=> element.path[0]=='email')? 'invalid':'' %>"
+              type="text"
+              name="email"
+              id="emialInput"
+              required
+            />
           </div>
           <div class="email-inputs">
             <label for="userName">User Name</label>
-            <input type="text" name="userName" id="userNameInput" required />
+            <input
+              class="<%= errorMessages.find((element)=> element.path[0]=='userName')? 'invalid':'' %>"
+              type="text"
+              name="userName"
+              id="userNameInput"
+              required
+            />
           </div>
           <div class="password-inputs">
             <label for="password"> Password </label>
             <input
+              class="<%= errorMessages.find((element)=> element.path[0]=='password')? 'invalid':'' %>"
               type="password"
               name="password"
               id="passwordInput"
