@@ -161,3 +161,7 @@ button {
 .signup a {
   color: #aa4586;
 }
+
+form input.invalid {
+  border-color: red;
+}
