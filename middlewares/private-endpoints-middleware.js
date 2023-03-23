@@ -1,11 +1,10 @@
+const renderPages = require("../util/render-pages");
+
 module.exports = async (request, response, next) => {
   try {
     if (!request.session.isLoggedIn) {
-      return response.render("auth/login", {
-        pageTitle: "Login",
-        path: "/login",
-        errorMessage: "Login first",
-        updateMessage: null,
+      return renderPages.renderLoginPage(response, {
+        errorMessages: [{ message: "Login first", path: ["none"] }],
       });
     }
     next();
