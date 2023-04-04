@@ -36,7 +36,7 @@ Shop ExpressJS provides the following features:
 - delete or edit products: Users can delete or edit their products
 
 ### Screenshot
-
+--------------------------------------------------------------------------------------------------------------------
 ![Login page](https://media.discordapp.net/attachments/883602591089573898/1092764641840599051/Screenshot_2023-04-04_131256.png)
 --------------------------------------------------------------------------------------------------------------------
 ![sign up page](https://cdn.discordapp.com/attachments/883602591089573898/1092764463905636392/signup.png)
