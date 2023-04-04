@@ -53,6 +53,7 @@ Shop ExpressJS provides the following features:
 ![orders page](https://media.discordapp.net/attachments/883602591089573898/1092764641307926538/orders.png)
 --------------------------------------------------------------------------------------------------------------------
 
+
 ![order details page](https://media.discordapp.net/attachments/883602591089573898/1092764641005932544/order_details.png)
 --------------------------------------------------------------------------------------------------------------------
 
