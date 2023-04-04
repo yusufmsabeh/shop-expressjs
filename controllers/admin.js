@@ -1,6 +1,6 @@
 const productDao = require("../data/DAOs/product-dao");
 const userDao = require("../data/DAOs/user-dao");
-
+const cartItemsDao = require("../data/DAOs/cart-items-dao");
 exports.getAddProducts = async (request, response, next) => {
   try {
     const productId = request.query.product;
@@ -46,6 +46,7 @@ exports.getAdminProducts = async (request, response, next) => {
 exports.postDeleteProduct = async (request, response, next) => {
   try {
     const productId = request.body.productId;
+    await cartItemsDao.removeProductFromAllCarts(productId);
     await userDao.deleteProduct(productId);
     response.redirect("/admin/products");
   } catch (e) {

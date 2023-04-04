@@ -58,6 +58,15 @@ exports.removeProduct = async (userId, productId) => {
   }
 };
 
+exports.removeProductFromAllCarts = async (productId) => {
+  try {
+    const db = getDb();
+    await db.run("DELETE FROM cart_items WHERE product_id=?", productId);
+  } catch (e) {
+    throw e;
+  }
+};
+
 exports.getCartItems = async (userId) => {
   try {
     const db = getDb();
