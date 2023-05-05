@@ -15,6 +15,9 @@ const setLocalsMiddleware = require("./middlewares/set-locals-middleware");
 const authorizationMiddleware = require("./middlewares/authorization-middleware");
 dotenv.config();
 const app = express();
+app.use(() => {
+  console.log("request received Shop js");
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(sessionMiddleware);
 app.use(authorizationMiddleware);
