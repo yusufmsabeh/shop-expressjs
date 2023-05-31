@@ -17,6 +17,7 @@ dotenv.config();
 const app = express();
 app.use(() => {
   console.log("request received Shop js");
+  next();
 });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(sessionMiddleware);
